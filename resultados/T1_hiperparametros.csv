@@ -1,0 +1,4 @@
+Modelo,colsample_bytree,learning_rate,max_depth,n_estimators,reg_lambda,subsample,num_leaves,subsample_freq,depth,iterations,l2_leaf_reg,rsm
+XGBoost,0.90851,0.01248,4.0,140.0,4.56918,0.94002,,,,,,
+LightGBM,0.77102,0.01079,7.0,278.0,0.35127,0.72574,39.0,1.0,,,,
+CatBoost,,0.01518,,,,,,,7.0,195.0,0.60543,0.84177

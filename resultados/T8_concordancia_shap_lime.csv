@@ -1,0 +1,4 @@
+Modelo,Spearman_SHAP_LIME,p,Coincidencia_top5,Top5_SHAP,Top5_LIME
+XGBoost,0.615,0.0332,4/5,"age, bmi, diastolic_bp, glucose, hypertensive","bmi, diastolic_bp, glucose, hypertensive, stroke"
+LightGBM,0.664,0.0185,4/5,"age, bmi, diastolic_bp, glucose, hypertensive","bmi, diastolic_bp, glucose, hypertensive, stroke"
+CatBoost,0.601,0.0386,4/5,"age, bmi, diastolic_bp, glucose, hypertensive","bmi, diastolic_bp, glucose, hypertensive, stroke"

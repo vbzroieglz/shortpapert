@@ -1,0 +1,13 @@
+Regla,Descripción,Unidad,Afectados
+R1,Edad < 18 años: registro excluido,registros,14
+R2,"age fuera de [18, 100] -> NaN",valores,5
+R2,"height fuera de [1.2, 2.2] -> NaN",valores,7
+R2,"weight fuera de [25, 250] -> NaN",valores,5
+R2,"pulse_rate fuera de [35, 200] -> NaN",valores,3
+R2,"systolic_bp fuera de [70, 250] -> NaN",valores,1
+R2,"diastolic_bp fuera de [40, 150] -> NaN",valores,0
+R2,"glucose fuera de [2.0, 40.0] -> NaN",valores,28
+R2,"bmi fuera de [12, 70] -> NaN",valores,7
+R3,IMC ausente completado con peso/talla²,valores,0
+R3,IMC incoherente (>1 kg/m²) reemplazado por peso/talla²,valores,0
+R4,Talla y peso excluidos como predictores (colinealidad con IMC),variables,2

@@ -1,0 +1,33 @@
+Caso,Prob,Condición,Peso
+TP,0.7981,glucose > 8.10,0.3738
+TP,0.7981,hypertensive=1,0.3101
+TP,0.7981,diastolic_bp > 90.00,0.0703
+TP,0.7981,age <= 35.00,-0.0672
+TP,0.7981,pulse_rate <= 69.00,-0.0494
+TP,0.7981,family_diabetes=0,0.0339
+TP,0.7981,family_hypertension=0,0.0313
+TP,0.7981,19.68 < bmi <= 21.91,-0.0307
+TN,0.1386,hypertensive=0,-0.3002
+TN,0.1386,6.92 < glucose <= 8.10,-0.1057
+TN,0.1386,diastolic_bp <= 73.00,-0.0637
+TN,0.1386,bmi <= 19.68,-0.0616
+TN,0.1386,family_hypertension=0,0.044
+TN,0.1386,stroke=0,-0.0421
+TN,0.1386,systolic_bp <= 119.00,-0.0413
+TN,0.1386,cardiovascular_disease=0,0.0381
+FP,0.5109,hypertensive=0,-0.3084
+FP,0.5109,6.00 < glucose <= 6.92,-0.1328
+FP,0.5109,diastolic_bp > 90.00,0.0767
+FP,0.5109,family_diabetes=0,0.0486
+FP,0.5109,age > 55.00,0.0469
+FP,0.5109,bmi > 24.49,0.0449
+FP,0.5109,stroke=0,0.0406
+FP,0.5109,family_hypertension=0,0.0261
+FN,0.2296,hypertensive=0,-0.3131
+FN,0.2296,6.92 < glucose <= 8.10,-0.1023
+FN,0.2296,diastolic_bp > 90.00,0.0638
+FN,0.2296,family_diabetes=0,0.0361
+FN,0.2296,19.68 < bmi <= 21.91,-0.033
+FN,0.2296,129.00 < systolic_bp <= 146.00,0.0276
+FN,0.2296,stroke=0,-0.023
+FN,0.2296,cardiovascular_disease=0,0.0208

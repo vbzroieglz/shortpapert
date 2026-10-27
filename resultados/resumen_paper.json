@@ -1,0 +1,663 @@
+{
+  "dataset": "DiaHealth (Prama et al., Mendeley Data, 2024, doi:10.17632/7m7555vgrn.1) — archivo Diabetes_Final_Data_V2.csv",
+  "flujo_registros": {
+    "registros_iniciales": 5437,
+    "excluidos_R1": 14,
+    "registros_finales": 5423,
+    "diabeticos": 344,
+    "no_diabeticos": 5079,
+    "prevalencia_%": 6.34,
+    "n_predictores": 12,
+    "n_train": 4338,
+    "pos_train": 275,
+    "n_test": 1085,
+    "pos_test": 69
+  },
+  "reglas_calidad": [
+    {
+      "Regla": "R1",
+      "Descripción": "Edad < 18 años: registro excluido",
+      "Unidad": "registros",
+      "Afectados": 14
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "age fuera de [18, 100] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 5
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "height fuera de [1.2, 2.2] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 7
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "weight fuera de [25, 250] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 5
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "pulse_rate fuera de [35, 200] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 3
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "systolic_bp fuera de [70, 250] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 1
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "diastolic_bp fuera de [40, 150] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 0
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "glucose fuera de [2.0, 40.0] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 28
+    },
+    {
+      "Regla": "R2",
+      "Descripción": "bmi fuera de [12, 70] -> NaN",
+      "Unidad": "valores",
+      "Afectados": 7
+    },
+    {
+      "Regla": "R3",
+      "Descripción": "IMC ausente completado con peso/talla²",
+      "Unidad": "valores",
+      "Afectados": 0
+    },
+    {
+      "Regla": "R3",
+      "Descripción": "IMC incoherente (>1 kg/m²) reemplazado por peso/talla²",
+      "Unidad": "valores",
+      "Afectados": 0
+    },
+    {
+      "Regla": "R4",
+      "Descripción": "Talla y peso excluidos como predictores (colinealidad con IMC)",
+      "Unidad": "variables",
+      "Afectados": 2
+    }
+  ],
+  "predictores": [
+    "age",
+    "gender",
+    "pulse_rate",
+    "systolic_bp",
+    "diastolic_bp",
+    "glucose",
+    "bmi",
+    "family_diabetes",
+    "hypertensive",
+    "family_hypertension",
+    "cardiovascular_disease",
+    "stroke"
+  ],
+  "protocolo": {
+    "semilla": 42,
+    "test_size": 0.2,
+    "pliegues_optimizacion": 5,
+    "pliegues_comparacion": 10,
+    "n_iter_por_modelo": 25,
+    "metrica_optimizacion": "roc_auc",
+    "balanceo": "SMOTE-NC (k=5) dentro de cada pliegue",
+    "imputacion": "mediana dentro de cada pliegue",
+    "sensibilidad_objetivo_umbral": 0.8,
+    "n_lime_agregado": 100
+  },
+  "hiperparametros": {
+    "XGBoost": {
+      "colsample_bytree": 0.90851,
+      "learning_rate": 0.01248,
+      "max_depth": 4,
+      "n_estimators": 140,
+      "reg_lambda": 4.56918,
+      "subsample": 0.94002
+    },
+    "LightGBM": {
+      "colsample_bytree": 0.77102,
+      "learning_rate": 0.01079,
+      "max_depth": 7,
+      "n_estimators": 278,
+      "num_leaves": 39,
+      "reg_lambda": 0.35127,
+      "subsample": 0.72574,
+      "subsample_freq": 1
+    },
+    "CatBoost": {
+      "depth": 7,
+      "iterations": 195,
+      "l2_leaf_reg": 0.60543,
+      "learning_rate": 0.01518,
+      "rsm": 0.84177
+    }
+  },
+  "tiempo_optimizacion_s": {
+    "XGBoost": 134.6,
+    "LightGBM": 107.1,
+    "CatBoost": 231.5
+  },
+  "cv10_media": {
+    "XGBoost": {
+      "AUC_ROC": 0.8507,
+      "PR_AUC": 0.4176,
+      "Exactitud": 0.8462,
+      "Precision": 0.2466,
+      "Sensibilidad": 0.6844,
+      "Especificidad": 0.8572,
+      "F1": 0.361,
+      "Brier": 0.1323
+    },
+    "LightGBM": {
+      "AUC_ROC": 0.8466,
+      "PR_AUC": 0.4137,
+      "Exactitud": 0.8725,
+      "Precision": 0.2766,
+      "Sensibilidad": 0.6265,
+      "Especificidad": 0.8892,
+      "F1": 0.3824,
+      "Brier": 0.0999
+    },
+    "CatBoost": {
+      "AUC_ROC": 0.8574,
+      "PR_AUC": 0.4338,
+      "Exactitud": 0.8522,
+      "Precision": 0.2579,
+      "Sensibilidad": 0.7062,
+      "Especificidad": 0.8622,
+      "F1": 0.3764,
+      "Brier": 0.1168
+    }
+  },
+  "cv10_de": {
+    "XGBoost": {
+      "AUC_ROC": 0.051,
+      "PR_AUC": 0.0786,
+      "Exactitud": 0.0214,
+      "Precision": 0.029,
+      "Sensibilidad": 0.1035,
+      "Especificidad": 0.0254,
+      "F1": 0.04,
+      "Brier": 0.0064
+    },
+    "LightGBM": {
+      "AUC_ROC": 0.0465,
+      "PR_AUC": 0.0715,
+      "Exactitud": 0.0138,
+      "Precision": 0.0354,
+      "Sensibilidad": 0.1118,
+      "Especificidad": 0.0161,
+      "F1": 0.052,
+      "Brier": 0.0074
+    },
+    "CatBoost": {
+      "AUC_ROC": 0.0452,
+      "PR_AUC": 0.0858,
+      "Exactitud": 0.0167,
+      "Precision": 0.0286,
+      "Sensibilidad": 0.1147,
+      "Especificidad": 0.021,
+      "F1": 0.0419,
+      "Brier": 0.0077
+    }
+  },
+  "pruebas_hipotesis_cv": null,
+  "umbrales_tamizaje": {
+    "XGBoost": 0.3846,
+    "LightGBM": 0.3058,
+    "CatBoost": 0.3413
+  },
+  "prueba": [
+    {
+      "Modelo": "XGBoost",
+      "Umbral": "0.50",
+      "Valor_umbral": 0.5,
+      "AUC_ROC": 0.8817,
+      "AUC_IC95": "[0.839, 0.919]",
+      "PR_AUC": 0.5152,
+      "PR_AUC_IC95": "[0.403, 0.630]",
+      "Brier": 0.1338,
+      "Exactitud": 0.8544,
+      "Precision": 0.2646,
+      "Sensibilidad": 0.7246,
+      "Especificidad": 0.8632,
+      "F1": 0.3876,
+      "TP": 50,
+      "TN": 877,
+      "FP": 139,
+      "FN": 19
+    },
+    {
+      "Modelo": "XGBoost",
+      "Umbral": "tamizaje",
+      "Valor_umbral": 0.3846,
+      "AUC_ROC": 0.8817,
+      "AUC_IC95": "[0.839, 0.919]",
+      "PR_AUC": 0.5152,
+      "PR_AUC_IC95": "[0.403, 0.630]",
+      "Brier": 0.1338,
+      "Exactitud": 0.7198,
+      "Precision": 0.1652,
+      "Sensibilidad": 0.8406,
+      "Especificidad": 0.7116,
+      "F1": 0.2762,
+      "TP": 58,
+      "TN": 723,
+      "FP": 293,
+      "FN": 11
+    },
+    {
+      "Modelo": "LightGBM",
+      "Umbral": "0.50",
+      "Valor_umbral": 0.5,
+      "AUC_ROC": 0.8824,
+      "AUC_IC95": "[0.842, 0.918]",
+      "PR_AUC": 0.5203,
+      "PR_AUC_IC95": "[0.406, 0.636]",
+      "Brier": 0.0957,
+      "Exactitud": 0.8747,
+      "Precision": 0.2893,
+      "Sensibilidad": 0.6667,
+      "Especificidad": 0.8888,
+      "F1": 0.4035,
+      "TP": 46,
+      "TN": 903,
+      "FP": 113,
+      "FN": 23
+    },
+    {
+      "Modelo": "LightGBM",
+      "Umbral": "tamizaje",
+      "Valor_umbral": 0.3058,
+      "AUC_ROC": 0.8824,
+      "AUC_IC95": "[0.842, 0.918]",
+      "PR_AUC": 0.5203,
+      "PR_AUC_IC95": "[0.406, 0.636]",
+      "Brier": 0.0957,
+      "Exactitud": 0.7696,
+      "Precision": 0.1911,
+      "Sensibilidad": 0.8116,
+      "Especificidad": 0.7667,
+      "F1": 0.3094,
+      "TP": 56,
+      "TN": 779,
+      "FP": 237,
+      "FN": 13
+    },
+    {
+      "Modelo": "CatBoost",
+      "Umbral": "0.50",
+      "Valor_umbral": 0.5,
+      "AUC_ROC": 0.8926,
+      "AUC_IC95": "[0.852, 0.926]",
+      "PR_AUC": 0.5123,
+      "PR_AUC_IC95": "[0.396, 0.630]",
+      "Brier": 0.1183,
+      "Exactitud": 0.847,
+      "Precision": 0.2634,
+      "Sensibilidad": 0.7826,
+      "Especificidad": 0.8514,
+      "F1": 0.3942,
+      "TP": 54,
+      "TN": 865,
+      "FP": 151,
+      "FN": 15
+    },
+    {
+      "Modelo": "CatBoost",
+      "Umbral": "tamizaje",
+      "Valor_umbral": 0.3413,
+      "AUC_ROC": 0.8926,
+      "AUC_IC95": "[0.852, 0.926]",
+      "PR_AUC": 0.5123,
+      "PR_AUC_IC95": "[0.396, 0.630]",
+      "Brier": 0.1183,
+      "Exactitud": 0.73,
+      "Precision": 0.1744,
+      "Sensibilidad": 0.8696,
+      "Especificidad": 0.7205,
+      "F1": 0.2906,
+      "TP": 60,
+      "TN": 732,
+      "FP": 284,
+      "FN": 9
+    }
+  ],
+  "delong": [
+    {
+      "Comparación": "XGBoost vs LightGBM",
+      "p_DeLong": 0.9144,
+      "p_Holm": 0.9144
+    },
+    {
+      "Comparación": "XGBoost vs CatBoost",
+      "p_DeLong": 0.0423,
+      "p_Holm": 0.1269
+    },
+    {
+      "Comparación": "LightGBM vs CatBoost",
+      "p_DeLong": 0.1071,
+      "p_Holm": 0.2141
+    }
+  ],
+  "mejor_modelo_cv": "CatBoost",
+  "ranking_shap": {
+    "glucose": {
+      "XGBoost": 0.534500002861023,
+      "LightGBM": 0.7085,
+      "CatBoost": 0.7493,
+      "Rango_XGBoost": 1,
+      "Rango_LightGBM": 1,
+      "Rango_CatBoost": 1
+    },
+    "hypertensive": {
+      "XGBoost": 0.47999998927116394,
+      "LightGBM": 0.6074,
+      "CatBoost": 0.5407,
+      "Rango_XGBoost": 2,
+      "Rango_LightGBM": 2,
+      "Rango_CatBoost": 2
+    },
+    "diastolic_bp": {
+      "XGBoost": 0.2401999980211258,
+      "LightGBM": 0.2956,
+      "CatBoost": 0.3323,
+      "Rango_XGBoost": 3,
+      "Rango_LightGBM": 3,
+      "Rango_CatBoost": 3
+    },
+    "bmi": {
+      "XGBoost": 0.21389999985694885,
+      "LightGBM": 0.2536,
+      "CatBoost": 0.2944,
+      "Rango_XGBoost": 4,
+      "Rango_LightGBM": 5,
+      "Rango_CatBoost": 4
+    },
+    "age": {
+      "XGBoost": 0.14489999413490295,
+      "LightGBM": 0.2912,
+      "CatBoost": 0.2312,
+      "Rango_XGBoost": 5,
+      "Rango_LightGBM": 4,
+      "Rango_CatBoost": 5
+    },
+    "systolic_bp": {
+      "XGBoost": 0.04340000078082085,
+      "LightGBM": 0.1471,
+      "CatBoost": 0.1168,
+      "Rango_XGBoost": 6,
+      "Rango_LightGBM": 6,
+      "Rango_CatBoost": 6
+    },
+    "pulse_rate": {
+      "XGBoost": 0.0414000004529953,
+      "LightGBM": 0.1326,
+      "CatBoost": 0.1001,
+      "Rango_XGBoost": 7,
+      "Rango_LightGBM": 7,
+      "Rango_CatBoost": 7
+    },
+    "gender": {
+      "XGBoost": 0.0066999997943639755,
+      "LightGBM": 0.0648,
+      "CatBoost": 0.0496,
+      "Rango_XGBoost": 8,
+      "Rango_LightGBM": 8,
+      "Rango_CatBoost": 8
+    },
+    "family_diabetes": {
+      "XGBoost": 0.0032999999821186066,
+      "LightGBM": 0.0057,
+      "CatBoost": 0.0116,
+      "Rango_XGBoost": 9,
+      "Rango_LightGBM": 10,
+      "Rango_CatBoost": 10
+    },
+    "cardiovascular_disease": {
+      "XGBoost": 0.0020000000949949026,
+      "LightGBM": 0.0032,
+      "CatBoost": 0.0026,
+      "Rango_XGBoost": 10,
+      "Rango_LightGBM": 11,
+      "Rango_CatBoost": 11
+    },
+    "family_hypertension": {
+      "XGBoost": 0.00139999995008111,
+      "LightGBM": 0.0066,
+      "CatBoost": 0.0121,
+      "Rango_XGBoost": 11,
+      "Rango_LightGBM": 9,
+      "Rango_CatBoost": 9
+    },
+    "stroke": {
+      "XGBoost": 0.00019999999494757503,
+      "LightGBM": 0.0,
+      "CatBoost": 0.0002,
+      "Rango_XGBoost": 12,
+      "Rango_LightGBM": 12,
+      "Rango_CatBoost": 12
+    }
+  },
+  "concordancia_shap_entre_modelos": [
+    {
+      "Par": "XGBoost vs LightGBM",
+      "Spearman_rho": 0.972,
+      "p": 0.0
+    },
+    {
+      "Par": "XGBoost vs CatBoost",
+      "Spearman_rho": 0.979,
+      "p": 0.0
+    },
+    {
+      "Par": "LightGBM vs CatBoost",
+      "Spearman_rho": 0.993,
+      "p": 0.0
+    }
+  ],
+  "lime_casos": {
+    "TP": {
+      "indice_prueba": 77,
+      "prob": 0.7981,
+      "real": 1,
+      "explicacion": [
+        [
+          "glucose > 8.10",
+          0.3738200608624525
+        ],
+        [
+          "hypertensive=1",
+          0.31013519151302554
+        ],
+        [
+          "diastolic_bp > 90.00",
+          0.07026684120812444
+        ],
+        [
+          "age <= 35.00",
+          -0.06717574658242555
+        ],
+        [
+          "pulse_rate <= 69.00",
+          -0.04936326989138282
+        ],
+        [
+          "family_diabetes=0",
+          0.03390839539994804
+        ],
+        [
+          "family_hypertension=0",
+          0.031322323273360486
+        ],
+        [
+          "19.68 < bmi <= 21.91",
+          -0.030677676021745884
+        ]
+      ]
+    },
+    "TN": {
+      "indice_prueba": 250,
+      "prob": 0.1386,
+      "real": 0,
+      "explicacion": [
+        [
+          "hypertensive=0",
+          -0.300226535889594
+        ],
+        [
+          "6.92 < glucose <= 8.10",
+          -0.10566377023224108
+        ],
+        [
+          "diastolic_bp <= 73.00",
+          -0.06374568271606354
+        ],
+        [
+          "bmi <= 19.68",
+          -0.06157895394962261
+        ],
+        [
+          "family_hypertension=0",
+          0.04397592418272065
+        ],
+        [
+          "stroke=0",
+          -0.042055630949568844
+        ],
+        [
+          "systolic_bp <= 119.00",
+          -0.04127061405103435
+        ],
+        [
+          "cardiovascular_disease=0",
+          0.038148361357309216
+        ]
+      ]
+    },
+    "FP": {
+      "indice_prueba": 1078,
+      "prob": 0.5109,
+      "real": 0,
+      "explicacion": [
+        [
+          "hypertensive=0",
+          -0.3083560405787244
+        ],
+        [
+          "6.00 < glucose <= 6.92",
+          -0.13282439998122464
+        ],
+        [
+          "diastolic_bp > 90.00",
+          0.0767315782866766
+        ],
+        [
+          "family_diabetes=0",
+          0.04857512975658231
+        ],
+        [
+          "age > 55.00",
+          0.046921485120193535
+        ],
+        [
+          "bmi > 24.49",
+          0.04487052996838629
+        ],
+        [
+          "stroke=0",
+          0.040571756392369575
+        ],
+        [
+          "family_hypertension=0",
+          0.026073023963481375
+        ]
+      ]
+    },
+    "FN": {
+      "indice_prueba": 942,
+      "prob": 0.2296,
+      "real": 1,
+      "explicacion": [
+        [
+          "hypertensive=0",
+          -0.3131208748822423
+        ],
+        [
+          "6.92 < glucose <= 8.10",
+          -0.10227951674030966
+        ],
+        [
+          "diastolic_bp > 90.00",
+          0.06379963421554723
+        ],
+        [
+          "family_diabetes=0",
+          0.03605643809517671
+        ],
+        [
+          "19.68 < bmi <= 21.91",
+          -0.03299495094623627
+        ],
+        [
+          "129.00 < systolic_bp <= 146.00",
+          0.027560825540550605
+        ],
+        [
+          "stroke=0",
+          -0.023017223032923133
+        ],
+        [
+          "cardiovascular_disease=0",
+          0.02083620366296946
+        ]
+      ]
+    }
+  },
+  "concordancia_shap_lime": [
+    {
+      "Modelo": "XGBoost",
+      "Spearman_SHAP_LIME": 0.615,
+      "p": 0.0332,
+      "Coincidencia_top5": "4/5",
+      "Top5_SHAP": "age, bmi, diastolic_bp, glucose, hypertensive",
+      "Top5_LIME": "bmi, diastolic_bp, glucose, hypertensive, stroke"
+    },
+    {
+      "Modelo": "LightGBM",
+      "Spearman_SHAP_LIME": 0.664,
+      "p": 0.0185,
+      "Coincidencia_top5": "4/5",
+      "Top5_SHAP": "age, bmi, diastolic_bp, glucose, hypertensive",
+      "Top5_LIME": "bmi, diastolic_bp, glucose, hypertensive, stroke"
+    },
+    {
+      "Modelo": "CatBoost",
+      "Spearman_SHAP_LIME": 0.601,
+      "p": 0.0386,
+      "Coincidencia_top5": "4/5",
+      "Top5_SHAP": "age, bmi, diastolic_bp, glucose, hypertensive",
+      "Top5_LIME": "bmi, diastolic_bp, glucose, hypertensive, stroke"
+    }
+  ],
+  "versiones": {
+    "python": "3.13.16",
+    "sklearn": "1.6.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.6.0",
+    "catboost": "1.2.10",
+    "shap": "0.54.1",
+    "lime": "n/d",
+    "imblearn": "0.14.2",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  }
+}

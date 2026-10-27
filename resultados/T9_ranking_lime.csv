@@ -1,0 +1,13 @@
+,XGBoost,LightGBM,CatBoost
+age,0.0337,0.0426,0.0416
+gender,0.0068,0.0193,0.0118
+pulse_rate,0.0148,0.0396,0.0266
+systolic_bp,0.0095,0.0271,0.021
+diastolic_bp,0.0625,0.0598,0.057
+glucose,0.1532,0.1612,0.1849
+bmi,0.0576,0.0609,0.0545
+family_diabetes,0.0197,0.0248,0.0292
+hypertensive,0.2426,0.2423,0.304
+family_hypertension,0.0131,0.0208,0.0252
+cardiovascular_disease,0.0244,0.0295,0.0297
+stroke,0.0408,0.0439,0.0423

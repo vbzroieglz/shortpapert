@@ -1,0 +1,4 @@
+Comparación,p_DeLong,p_Holm
+XGBoost vs LightGBM,0.9144,0.9144
+XGBoost vs CatBoost,0.0423,0.1269
+LightGBM vs CatBoost,0.1071,0.2141
